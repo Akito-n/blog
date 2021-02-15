@@ -1,7 +1,32 @@
 import Head from 'next/head'
 import Image from 'next/image'
+import { GraphQLClient } from 'graphql-request'
 
-export const Home = (): JSX.Element => (
+export async function getStaticProps() {
+  const graphcms = new GraphQLClient(
+    'https://api-eu-central-1.graphcms.com/v2/ck8sn5tnf01gc01z89dbc7s0o/master'
+  );
+
+  const { products } = await graphcms.request(
+    `
+      { 
+        products {
+          slug
+          name
+          
+        }
+      }
+    `
+  );
+
+  return {
+    props: {
+      products,
+    },
+  };
+}
+
+export const Home = ({ products }): JSX.Element => (
   <div className="container">
     <Head>
       <title>Create Next App</title>
@@ -9,6 +34,9 @@ export const Home = (): JSX.Element => (
     </Head>
 
     <main>
+      {products ? products.map(({slug, name}) => {
+        return <p>{slug}</p>
+      }) : 'loading'}
       <h1 className="title">
         Welcome to <a href="https://nextjs.org">Next.js!</a>
       </h1>
