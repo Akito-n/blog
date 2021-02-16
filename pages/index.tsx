@@ -2,18 +2,17 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { GraphQLClient } from 'graphql-request'
 
+const { GRAPH_CMS_API } = process.env
 export async function getStaticProps() {
   const graphcms = new GraphQLClient(
-    'https://api-eu-central-1.graphcms.com/v2/ck8sn5tnf01gc01z89dbc7s0o/master'
+    GRAPH_CMS_API
   );
 
-  const { products } = await graphcms.request(
+  const { authors } = await graphcms.request(
     `
       { 
-        products {
-          slug
+        authors {
           name
-          
         }
       }
     `
@@ -21,12 +20,12 @@ export async function getStaticProps() {
 
   return {
     props: {
-      products,
+      authors,
     },
   };
 }
 
-export const Home = ({ products }): JSX.Element => (
+export const Home = ({ authors }): JSX.Element => (
   <div className="container">
     <Head>
       <title>Create Next App</title>
@@ -34,14 +33,14 @@ export const Home = ({ products }): JSX.Element => (
     </Head>
 
     <main>
-      {products ? products.map(({slug, name}) => {
-        return <p>{slug}</p>
+      {authors ? authors.map(({name}) => {
+        return <p key={name}>{name}</p>
       }) : 'loading'}
       <h1 className="title">
         Welcome to <a href="https://nextjs.org">Next.js!</a>
       </h1>
 
-      <p className="description">
+      <p className="description bg-red-500">
         Get started by editing <code>pages/index.tsx</code>
       </p>
 
