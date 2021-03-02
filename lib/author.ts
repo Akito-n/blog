@@ -14,11 +14,7 @@ export type AuthorProp = {
   biography?: string | null | undefined
 }
 
-const author = async (): Promise<{
-  props: {
-    authors: [AuthorProp]
-  }
-}> => {
+const author = async (): Promise<{ authors: [AuthorProp] }> => {
   const graphcms = new GraphQLClient(GRAPH_CMS_API)
   const { authors } = await graphcms.request(
     `
@@ -35,11 +31,7 @@ const author = async (): Promise<{
     `
   )
 
-  return {
-    props: {
-      authors
-    }
-  }
+  return authors
 }
 
 export { author }
