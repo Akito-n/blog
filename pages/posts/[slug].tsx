@@ -1,3 +1,4 @@
+import { Layout } from '../../components/Layout'
 import { getAllPostSlugs, getPostData } from '../../lib/posts'
 
 export const getStaticProps = async ({ params }) => {
@@ -19,14 +20,14 @@ export const getStaticPaths = async () => {
 
 const Post = ({ postData }) => {
   return (
-    <div>
+    <Layout home={false}>
       <div>{postData.title}</div>
       <div>{postData.id}</div>
       <div>{postData.date}</div>
       <div>{JSON.stringify(postData.content)}</div>
       <div>{postData.content.markdown}</div>
       <div>{postData.tags.map((tag) => tag.name)}</div>
-    </div>
+    </Layout>
   )
 }
 
