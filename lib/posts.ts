@@ -1,5 +1,7 @@
 import { GraphQLClient } from 'graphql-request'
 import { AuthorProp } from './author'
+import remark from 'remark'
+import html from 'remark-html'
 const { GRAPH_CMS_API } = process.env
 
 export type PostProp = {
@@ -97,9 +99,12 @@ const getPostData = async (slug: string) => {
     `,
     { slug }
   )
+  const body = await remark().use(html).process(post.content.markdown)
+  console.log('body', JSON.stringify(body))
 
   return {
-    ...post
+    ...post,
+    body: body.contents
   }
 }
 
