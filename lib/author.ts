@@ -7,6 +7,7 @@ export type PictureProp = {
 }
 
 export type AuthorProp = {
+  id: string
   name: string
   picture: PictureProp
   job: string
