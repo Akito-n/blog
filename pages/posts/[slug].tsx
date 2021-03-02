@@ -1,5 +1,6 @@
 import { Layout } from '../../components/Layout'
 import { getAllPostSlugs, getPostData } from '../../lib/posts'
+import marked from 'marked'
 
 export const getStaticProps = async ({ params }) => {
   const postData = await getPostData(params.slug)
@@ -24,7 +25,9 @@ const Post = ({ postData }) => {
       <div>{postData.title}</div>
       <div>{postData.id}</div>
       <div>{postData.date}</div>
-      <div dangerouslySetInnerHTML={{ __html: postData.body }} />
+      <div
+        dangerouslySetInnerHTML={{ __html: marked(postData.content.markdown) }}
+      />
 
       <div>{postData.tags.map((tag) => tag.name)}</div>
     </Layout>
