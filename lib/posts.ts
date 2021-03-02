@@ -83,7 +83,7 @@ const getPostData = async (slug: string) => {
           title
           id
           date
-          body
+          content
           tags {
             id
             name

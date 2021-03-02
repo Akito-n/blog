@@ -34,7 +34,7 @@ const Post = ({ postData }) => {
       <div>{postData.id}</div>
       <div>{postData.date}</div>
       <div id="body">
-        <span dangerouslySetInnerHTML={{ __html: marked(postData.body) }} />
+        <span dangerouslySetInnerHTML={{ __html: marked(postData.content) }} />
       </div>
 
       <div>{postData.tags.map((tag) => tag.name)}</div>
