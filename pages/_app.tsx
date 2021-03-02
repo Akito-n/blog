@@ -1,5 +1,11 @@
 import './styles.css'
-function App({ Component, pageProps }) {
+const App = ({
+  Component,
+  pageProps
+}: {
+  Component: any
+  pageProps: any
+}): JSX.Element => {
   return <Component {...pageProps} />
 }
 
