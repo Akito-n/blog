@@ -32,7 +32,6 @@
     "graphcms-image": "^1.1.0-beta4",
     "graphql": "^15.5.0",
     "graphql-request": "^3.4.0",
-    "highlightjs": "^9.16.2",
     "marked": "^2.0.1",
     "next": "latest",
     "postcss": "^8.2.6",
