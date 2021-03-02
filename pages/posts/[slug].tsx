@@ -24,8 +24,8 @@ const Post = ({ postData }) => {
       <div>{postData.title}</div>
       <div>{postData.id}</div>
       <div>{postData.date}</div>
-      <div>{JSON.stringify(postData.content)}</div>
-      <div>{postData.content.markdown}</div>
+      <div dangerouslySetInnerHTML={{ __html: postData.body }} />
+
       <div>{postData.tags.map((tag) => tag.name)}</div>
     </Layout>
   )
