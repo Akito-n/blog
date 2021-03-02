@@ -6,6 +6,11 @@ export type PostProp = {
   id: string
   title: string
   slug: string
+  content: {
+    html: string
+    markdown: string
+    raw: string
+  }
   date: Date
   tags: {
     id: string
@@ -51,4 +56,51 @@ const allPosts = async (): Promise<{ posts: [PostProp] }> => {
   return posts
 }
 
-export { allPosts }
+const getAllPostSlugs = async () => {
+  const graphcms = new GraphQLClient(GRAPH_CMS_API)
+  const { posts } = await graphcms.request(
+    `
+      { 
+        posts{
+          slug
+        }
+      }
+    `
+  )
+  const postSlugs = posts.map(({ slug }) => ({
+    params: { slug }
+  }))
+
+  return postSlugs
+}
+
+const getPostData = async (slug: string) => {
+  const graphcms = new GraphQLClient(GRAPH_CMS_API)
+  const { post } = await graphcms.request(
+    `
+      query getPostQuery($slug: String!){
+        post(where:{slug: $slug}){
+          title
+          id
+          date
+          content {
+            raw
+            markdown
+            html
+          }
+          tags {
+            id
+            name
+          }
+        }
+      }
+    `,
+    { slug }
+  )
+
+  return {
+    ...post
+  }
+}
+
+export { allPosts, getAllPostSlugs, getPostData }
