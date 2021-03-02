@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import { Layout } from '../components/Layout'
 import { author, AuthorProp } from '../lib/author'
 import { allPosts, PostProp } from '../lib/posts'
@@ -48,7 +49,9 @@ export const Home = ({
             ? posts.map((post) => {
                 return (
                   <div key={post.id}>
-                    <p>{post.title}</p>
+                    <Link href={`/posts/${post.slug}`}>
+                      <a>{post.title}</a>
+                    </Link>
                   </div>
                 )
               })
