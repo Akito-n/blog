@@ -23,14 +23,31 @@ export const getStaticPaths = async () => {
   }
 }
 
+const toc = []
 const Post = ({ postData }) => {
+  const renderer = new marked.Renderer()
+  renderer.heading = (text, level) => {
+    const slug = encodeURI(text.toLowerCase())
+    console.log(slug)
+    toc.push({
+      level: level,
+      slug: slug,
+      title: text
+    })
+
+    return '<h' + level + ' id="' + slug + '">' + text + '</h' + level + '>\n'
+  }
+
   marked.setOptions({
+    renderer,
     langPrefix: 'hljs language-',
     highlight: (code, lang) => {
       const validLanguage = highlight.getLanguage(lang) ? lang : 'plaintext'
       return highlight.highlight(validLanguage, code).value
     }
   })
+
+  console.log(toc)
   return (
     <Layout home={false}>
       <div className="flex justify-center mx-auto">
@@ -70,6 +87,30 @@ const Post = ({ postData }) => {
             </div>
             <div>
               <p className="text-center">{postData.author.name}</p>
+            </div>
+            <div>
+              {toc.map(({ level, slug, title }) => {
+                const topic =
+                  '<h' +
+                  level +
+                  ' id="' +
+                  slug +
+                  '">' +
+                  title +
+                  '</h' +
+                  level +
+                  '>\n'
+                console.log(topic)
+                return (
+                  <a key={slug} href={`#${slug}`}>
+                    <span
+                      dangerouslySetInnerHTML={{
+                        __html: topic
+                      }}
+                    />
+                  </a>
+                )
+              })}
             </div>
           </nav>
         </div>
