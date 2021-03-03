@@ -3,6 +3,7 @@ import { getAllPostSlugs, getPostData } from '../../lib/posts'
 import marked from 'marked'
 import highlight from 'highlight.js'
 import 'highlight.js/styles/railscasts.css'
+import Icon from 'components/icon'
 
 export const getStaticProps = async ({ params }) => {
   const postData = await getPostData(params.slug)
@@ -31,8 +32,7 @@ const Post = ({ postData }) => {
   })
   return (
     <Layout home={false}>
-      <section className="flex justify-center mx-auto">
-        <div>sns</div>
+      <div className="flex justify-center mx-auto">
         <div>
           <div>{postData.title}</div>
           <div>{postData.id}</div>
@@ -44,11 +44,18 @@ const Post = ({ postData }) => {
           </div>
           <div>{postData.tags.map((tag) => tag.name)}</div>
         </div>
-        <div>
-          <div>my-info</div>
-          <div>mokuzi</div>
+        <div className="mt-24">
+          <nav className="sticky top-20 right-20">
+            <div>
+              <Icon icon="twitter" size={20} />
+              <Icon icon="github" size={20} />
+              <Icon icon="facebook2" size={20} />
+            </div>
+            <div>my-info</div>
+            <div>mokuzi</div>
+          </nav>
         </div>
-      </section>
+      </div>
     </Layout>
   )
 }

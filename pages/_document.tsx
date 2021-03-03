@@ -28,10 +28,9 @@ class MyDocument extends Document {
           />
           <meta name="og:title" content={siteTitle} />
           <meta name="twitter:card" content="summary_large_image" />
-          <header></header>
         </Head>
+        <Header />
         <body>
-          <Header />
           <Main />
           <NextScript />
         </body>
