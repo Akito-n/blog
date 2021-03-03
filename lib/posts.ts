@@ -6,19 +6,24 @@ export type PostProp = {
   id: string
   title: string
   slug: string
+  excerpt: string
   content: {
     html: string
     markdown: string
     raw: string
   }
   date: Date
-  tags: {
-    id: string
-    name: string
-  }
-  CoverImage: {
+  tags: [
+    {
+      id: string
+      name: string
+    }
+  ]
+  coverImage: {
     id: string
     url: string
+    height: string
+    width: string
   }
   author: AuthorProp
 }
@@ -33,6 +38,7 @@ const allPosts = async (): Promise<{ posts: [PostProp] }> => {
           title
           slug
           date
+          excerpt
           tags{
             name
             id
@@ -47,6 +53,8 @@ const allPosts = async (): Promise<{ posts: [PostProp] }> => {
           coverImage {
             id
             url
+            height
+            width
           }
         }
       }

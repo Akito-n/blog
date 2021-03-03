@@ -5,6 +5,7 @@ import marked from 'marked'
 import highlight from 'highlight.js'
 import 'highlight.js/styles/railscasts.css'
 import Icon from 'components/icon'
+import Topic, { Toc } from 'components/Topic'
 
 export const getStaticProps = async ({ params }) => {
   const postData = await getPostData(params.slug)
@@ -23,12 +24,11 @@ export const getStaticPaths = async () => {
   }
 }
 
-const toc = []
+const toc: [Toc | undefined | null] = [null]
 const Post = ({ postData }) => {
   const renderer = new marked.Renderer()
   renderer.heading = (text, level) => {
     const slug = encodeURI(text.toLowerCase())
-    console.log(slug)
     toc.push({
       level: level,
       slug: slug,
@@ -47,11 +47,10 @@ const Post = ({ postData }) => {
     }
   })
 
-  console.log(toc)
   return (
-    <Layout home={false}>
+    <Layout>
       <div className="flex justify-center mx-auto">
-        <div className="bg-white pc:max-w-screen-lg">
+        <div className="max-w-screen-lg bg-white">
           <div className="max-w-screen-lg">
             <Image
               src={postData.coverImage.url}
@@ -61,7 +60,6 @@ const Post = ({ postData }) => {
           </div>
           <div className="p-5">
             <div>{postData.title}</div>
-            <div>{postData.id}</div>
             <div>{postData.date}</div>
             <div id="body">
               <span
@@ -72,8 +70,8 @@ const Post = ({ postData }) => {
           </div>
         </div>
         <div className="pl-10 mt-24">
-          <nav className="sticky top-20 right-20">
-            <div className="flex">
+          <nav className="sticky p-3 bg-white rounded-sm top-20 right-20">
+            <div className="flex justify-around">
               <div className="grid items-end justify-items-stretch">
                 <Icon icon="twitter" size={25} />
                 <Icon icon="github" size={25} />
@@ -89,28 +87,11 @@ const Post = ({ postData }) => {
               <p className="text-center">{postData.author.name}</p>
             </div>
             <div>
-              {toc.map(({ level, slug, title }) => {
-                const topic =
-                  '<h' +
-                  level +
-                  ' id="' +
-                  slug +
-                  '">' +
-                  title +
-                  '</h' +
-                  level +
-                  '>\n'
-                console.log(topic)
-                return (
-                  <a key={slug} href={`#${slug}`}>
-                    <span
-                      dangerouslySetInnerHTML={{
-                        __html: topic
-                      }}
-                    />
-                  </a>
-                )
-              })}
+              <ul className="list-none">
+                {toc.map((t, i) => (
+                  <Topic toc={t} key={i} />
+                ))}
+              </ul>
             </div>
           </nav>
         </div>

@@ -1,5 +1,5 @@
+import PostCard from 'components/PostCard'
 import Image from 'next/image'
-import Link from 'next/link'
 import { Layout } from '../components/Layout'
 import { author, AuthorProp } from '../lib/author'
 import { allPosts, PostProp } from '../lib/posts'
@@ -24,15 +24,15 @@ export const Home = ({
   posts: [PostProp]
 }): JSX.Element => {
   return (
-    <Layout home>
-      <div className="container">
+    <Layout>
+      <div>
         <main>
-          <div>
+          <p className="text-lg font-bold text-center">なんかいい感じにやる</p>
+          <div className="flex justify-center mx-auto">
             {authors
               ? authors.map((author) => {
                   return (
                     <div key={author.id}>
-                      <p>{author.name}</p>
                       <Image
                         src={author.picture.url}
                         width={144}
@@ -44,18 +44,14 @@ export const Home = ({
               : 'loading'}
           </div>
         </main>
-        <div>
-          {posts
-            ? posts.map((post) => {
-                return (
-                  <div key={post.id}>
-                    <Link href={`/posts/${post.slug}`}>
-                      <a>{post.title}</a>
-                    </Link>
-                  </div>
-                )
-              })
-            : 'loading'}
+        <div className="flex justify-center mx-auto">
+          <div className="grid grid-cols-3 gap-4">
+            {posts
+              ? posts.map((post) => {
+                  return <PostCard key={post.id} post={post} />
+                })
+              : 'loading'}
+          </div>
         </div>
       </div>
     </Layout>
