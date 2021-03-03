@@ -19,7 +19,7 @@ const author = async (): Promise<{ authors: [AuthorProp] }> => {
   const { authors } = await graphcms.request(
     `
       { 
-        authors {
+        authors(first: 1) {
           id
           name
           picture{
