@@ -29,7 +29,6 @@ const Post = ({ postData }) => {
   const renderer = new marked.Renderer()
   renderer.heading = (text, level) => {
     const slug = encodeURI(text.toLowerCase())
-    console.log(slug)
     toc.push({
       level: level,
       slug: slug,
@@ -48,11 +47,10 @@ const Post = ({ postData }) => {
     }
   })
 
-  console.log(toc)
   return (
     <Layout>
       <div className="flex justify-center mx-auto">
-        <div className="bg-white pc:max-w-screen-lg">
+        <div className="max-w-screen-lg bg-white">
           <div className="max-w-screen-lg">
             <Image
               src={postData.coverImage.url}

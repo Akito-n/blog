@@ -27,12 +27,12 @@ export const Home = ({
     <Layout>
       <div>
         <main>
+          <p className="text-lg font-bold text-center">なんかいい感じにやる</p>
           <div className="flex justify-center mx-auto">
             {authors
               ? authors.map((author) => {
                   return (
                     <div key={author.id}>
-                      <p>{author.name}</p>
                       <Image
                         src={author.picture.url}
                         width={144}
