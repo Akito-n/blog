@@ -9,7 +9,7 @@ export const Layout = ({
   home: boolean
 }): JSX.Element => {
   return (
-    <div className={styles.container}>
+    <div className="pt-20">
       <main className="block">{children}</main>
       {!home && (
         <div className={styles.backToHome}>
