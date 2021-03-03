@@ -24,7 +24,7 @@ export const Home = ({
   posts: [PostProp]
 }): JSX.Element => {
   return (
-    <Layout home>
+    <Layout>
       <div className="container">
         <main>
           <div>

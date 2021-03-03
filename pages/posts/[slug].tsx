@@ -50,7 +50,7 @@ const Post = ({ postData }) => {
 
   console.log(toc)
   return (
-    <Layout home={false}>
+    <Layout>
       <div className="flex justify-center mx-auto">
         <div className="bg-white pc:max-w-screen-lg">
           <div className="max-w-screen-lg">
