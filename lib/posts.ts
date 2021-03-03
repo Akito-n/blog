@@ -83,6 +83,17 @@ const getPostData = async (slug: string) => {
           title
           id
           date
+          author {
+            name
+            picture {
+              id
+              url
+            }
+          }
+          coverImage {
+            id
+            url
+          }
           content
           tags {
             id
