@@ -5,6 +5,7 @@ import marked from 'marked'
 import highlight from 'highlight.js'
 import 'highlight.js/styles/railscasts.css'
 import Icon from 'components/icon'
+import Topic, { Toc } from 'components/Topic'
 
 export const getStaticProps = async ({ params }) => {
   const postData = await getPostData(params.slug)
@@ -23,7 +24,7 @@ export const getStaticPaths = async () => {
   }
 }
 
-const toc = []
+const toc: [Toc | undefined | null] = [null]
 const Post = ({ postData }) => {
   const renderer = new marked.Renderer()
   renderer.heading = (text, level) => {
@@ -89,28 +90,9 @@ const Post = ({ postData }) => {
               <p className="text-center">{postData.author.name}</p>
             </div>
             <div>
-              {toc.map(({ level, slug, title }) => {
-                const topic =
-                  '<h' +
-                  level +
-                  ' id="' +
-                  slug +
-                  '">' +
-                  title +
-                  '</h' +
-                  level +
-                  '>\n'
-                console.log(topic)
-                return (
-                  <a key={slug} href={`#${slug}`}>
-                    <span
-                      dangerouslySetInnerHTML={{
-                        __html: topic
-                      }}
-                    />
-                  </a>
-                )
-              })}
+              {toc.map((t, i) => (
+                <Topic toc={t} key={t ? t.slug : i} />
+              ))}
             </div>
           </nav>
         </div>
