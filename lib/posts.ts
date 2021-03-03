@@ -93,6 +93,8 @@ const getPostData = async (slug: string) => {
           coverImage {
             id
             url
+            width
+            height
           }
           content
           tags {
