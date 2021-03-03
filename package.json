@@ -26,16 +26,17 @@
     ]
   },
   "dependencies": {
+    "@types/highlightjs": "^10.1.0",
+    "@types/marked": "^1.2.2",
     "autoprefixer": "^10.2.4",
     "graphcms-image": "^1.1.0-beta4",
     "graphql": "^15.5.0",
     "graphql-request": "^3.4.0",
+    "marked": "^2.0.1",
     "next": "latest",
     "postcss": "^8.2.6",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "remark": "^13.0.0",
-    "remark-html": "^13.0.1",
     "tailwindcss": "^2.0.3"
   },
   "devDependencies": {
