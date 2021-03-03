@@ -31,15 +31,24 @@ const Post = ({ postData }) => {
   })
   return (
     <Layout home={false}>
-      <h1 className="bg-primary">見出し</h1>
-      <div>{postData.title}</div>
-      <div>{postData.id}</div>
-      <div>{postData.date}</div>
-      <div id="body">
-        <span dangerouslySetInnerHTML={{ __html: marked(postData.content) }} />
-      </div>
-
-      <div>{postData.tags.map((tag) => tag.name)}</div>
+      <section className="flex justify-center mx-auto">
+        <div>sns</div>
+        <div>
+          <div>{postData.title}</div>
+          <div>{postData.id}</div>
+          <div>{postData.date}</div>
+          <div id="body">
+            <span
+              dangerouslySetInnerHTML={{ __html: marked(postData.content) }}
+            />
+          </div>
+          <div>{postData.tags.map((tag) => tag.name)}</div>
+        </div>
+        <div>
+          <div>my-info</div>
+          <div>mokuzi</div>
+        </div>
+      </section>
     </Layout>
   )
 }
