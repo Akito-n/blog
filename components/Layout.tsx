@@ -10,7 +10,7 @@ export const Layout = ({
 }): JSX.Element => {
   return (
     <div className={styles.container}>
-      <main>{children}</main>
+      <main className="block">{children}</main>
       {!home && (
         <div className={styles.backToHome}>
           <Link href="/">
