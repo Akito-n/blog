@@ -54,15 +54,23 @@ const Post = ({ postData }) => {
             <div>{postData.tags.map((tag) => tag.name)}</div>
           </div>
         </div>
-        <div className="mt-24">
+        <div className="pl-10 mt-24">
           <nav className="sticky top-20 right-20">
-            <div>
-              <Icon icon="twitter" size={20} />
-              <Icon icon="github" size={20} />
-              <Icon icon="facebook2" size={20} />
+            <div className="flex">
+              <div className="grid items-end justify-items-stretch">
+                <Icon icon="twitter" size={25} />
+                <Icon icon="github" size={25} />
+                <Icon icon="facebook2" size={25} />
+              </div>
+              <Image
+                src={postData.author.picture.url}
+                width={144}
+                height={144}
+              />
             </div>
-            <div>my-info</div>
-            <div>mokuzi</div>
+            <div>
+              <p className="text-center">{postData.author.name}</p>
+            </div>
           </nav>
         </div>
       </div>
