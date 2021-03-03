@@ -73,8 +73,8 @@ const Post = ({ postData }) => {
           </div>
         </div>
         <div className="pl-10 mt-24">
-          <nav className="sticky top-20 right-20">
-            <div className="flex">
+          <nav className="sticky p-3 bg-white rounded-sm top-20 right-20">
+            <div className="flex justify-around">
               <div className="grid items-end justify-items-stretch">
                 <Icon icon="twitter" size={25} />
                 <Icon icon="github" size={25} />
@@ -90,9 +90,11 @@ const Post = ({ postData }) => {
               <p className="text-center">{postData.author.name}</p>
             </div>
             <div>
-              {toc.map((t, i) => (
-                <Topic toc={t} key={t ? t.slug : i} />
-              ))}
+              <ul className="list-none">
+                {toc.map((t, i) => (
+                  <Topic toc={t} key={i} />
+                ))}
+              </ul>
             </div>
           </nav>
         </div>
