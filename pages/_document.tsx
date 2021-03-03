@@ -1,4 +1,5 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document'
+import { Header } from '../components/Header'
 
 export const siteTitle = 'Saboten blog'
 
@@ -27,8 +28,8 @@ class MyDocument extends Document {
           />
           <meta name="og:title" content={siteTitle} />
           <meta name="twitter:card" content="summary_large_image" />
-          <header></header>
         </Head>
+        <Header />
         <body>
           <Main />
           <NextScript />

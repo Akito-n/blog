@@ -1,2 +1,3 @@
+@import '~normalize.css';
 @tailwind components;
 @tailwind utilities;
