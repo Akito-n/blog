@@ -31,7 +31,7 @@ const Post = ({ postData }) => {
   })
   return (
     <Layout home={false}>
-      <h1>見出し</h1>
+      <h1 className="bg-primary">見出し</h1>
       <div>{postData.title}</div>
       <div>{postData.id}</div>
       <div>{postData.date}</div>
