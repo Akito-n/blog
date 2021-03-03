@@ -1,6 +1,7 @@
 import { PostProp } from 'lib/posts'
 import Link from 'next/link'
 import Image from 'next/image'
+import utilStyle from 'styles/utils.module.css'
 
 const PostCard = ({ post }: { post: PostProp }): JSX.Element => {
   return (
@@ -9,7 +10,7 @@ const PostCard = ({ post }: { post: PostProp }): JSX.Element => {
         <div className="relative">
           <div className="h-48 max-w-full bg-center bg-no-repeat bg-cover cursor-pointer">
             <Link href={`/posts/${post.slug}`}>
-              <a>
+              <a className={utilStyle.card}>
                 <Image
                   src={post.coverImage.url ? post.coverImage.url : 'sample.png'}
                   width={post.coverImage.width}
