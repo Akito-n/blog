@@ -2,7 +2,7 @@ import { Layout } from '../../components/Layout'
 import { getAllPostSlugs, getPostData } from '../../lib/posts'
 import marked from 'marked'
 import highlight from 'highlight.js'
-import 'highlight.js/styles/github-gist.css'
+import 'highlight.js/styles/railscasts.css'
 
 export const getStaticProps = async ({ params }) => {
   const postData = await getPostData(params.slug)
@@ -23,9 +23,10 @@ export const getStaticPaths = async () => {
 
 const Post = ({ postData }) => {
   marked.setOptions({
-    langPrefix: '',
+    langPrefix: 'hljs language-',
     highlight: (code, lang) => {
-      return highlight.highlightAuto(code, [lang]).value
+      const validLanguage = highlight.getLanguage(lang) ? lang : 'plaintext'
+      return highlight.highlight(validLanguage, code).value
     }
   })
   return (
