@@ -1,4 +1,5 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document'
+import { Header } from '../components/Header'
 
 export const siteTitle = 'Saboten blog'
 
@@ -30,6 +31,7 @@ class MyDocument extends Document {
           <header></header>
         </Head>
         <body>
+          <Header />
           <Main />
           <NextScript />
         </body>
