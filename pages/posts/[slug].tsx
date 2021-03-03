@@ -62,7 +62,6 @@ const Post = ({ postData }) => {
           </div>
           <div className="p-5">
             <div>{postData.title}</div>
-            <div>{postData.id}</div>
             <div>{postData.date}</div>
             <div id="body">
               <span
