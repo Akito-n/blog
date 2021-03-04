@@ -50,9 +50,9 @@ const Post = ({ postData }) => {
 
   return (
     <Layout>
-      <div className="flex justify-center mx-auto">
-        <div className="max-w-screen-lg bg-white">
-          <div className="max-w-screen-lg">
+      <div className="grid grid-cols-12 mx-auto">
+        <div className="col-span-6 col-start-2 bg-white">
+          <div className="max-w-full">
             <Image
               src={postData.coverImage.url}
               width={postData.coverImage.width || 1080}
@@ -83,7 +83,7 @@ const Post = ({ postData }) => {
             </div>
           </div>
         </div>
-        <div className="pl-10 mt-24">
+        <div className="col-span-3 col-start-8 pl-10 mt-24">
           <nav className="sticky p-3 bg-white rounded-sm top-20 right-20">
             <div className="flex justify-around">
               <div className="grid items-end justify-items-stretch">
@@ -98,16 +98,19 @@ const Post = ({ postData }) => {
                   </a>
                 </Link>
 
-                <Icon icon="facebook2" size={25} />
+                <Icon icon="facebook2" size={25} color="black" />
               </div>
-              <Image
-                src={postData.author.picture.url}
-                width={144}
-                height={144}
-              />
+              <div className="-ml-5">
+                <Image
+                  src={postData.author.picture.url}
+                  width={144}
+                  height={144}
+                />
+                <p className="text-center">{postData.author.name}</p>
+              </div>
             </div>
             <div>
-              <p className="text-center">{postData.author.name}</p>
+              <p className="text-center">{postData.author.biography}</p>
             </div>
             <div className="">
               <div></div>
