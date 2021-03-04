@@ -63,12 +63,23 @@ const Post = ({ postData }) => {
             <div className="font-mono text-gray-600 text-md">
               {postData.date}
             </div>
+            <div className="my-3">
+              {postData.tags.map((tag) => {
+                return (
+                  <span
+                    key={tag.id}
+                    className="p-1 px-2 mx-2 text-xs text-gray-200 bg-gray-800 border rounded"
+                  >
+                    {tag.name}
+                  </span>
+                )
+              })}
+            </div>
             <div id="body" className="markdown">
               <span
                 dangerouslySetInnerHTML={{ __html: marked(postData.content) }}
               />
             </div>
-            <div>{postData.tags.map((tag) => tag.name)}</div>
           </div>
         </div>
         <div className="pl-10 mt-24">
@@ -88,7 +99,8 @@ const Post = ({ postData }) => {
             <div>
               <p className="text-center">{postData.author.name}</p>
             </div>
-            <div>
+            <div className="">
+              <div></div>
               <ul className="list-none">
                 {toc.map((t, i) => (
                   <Topic toc={t} key={i} />
