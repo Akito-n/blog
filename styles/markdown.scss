@@ -1,5 +1,10 @@
 .markdown {
-  h1,
+  h1 {
+    padding-bottom: 2px;
+    border-bottom: solid;
+    border-bottom-width: 2px;
+    border-color: #7ecb20;
+  }
   h2,
   h3,
   h4,
@@ -8,6 +13,6 @@
     padding-left: 10px;
     border-left: solid;
     border-left-width: 4px;
-    border-color: #32cb00;
+    border-color: #7ecb20;
   }
 }
