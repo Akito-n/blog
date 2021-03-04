@@ -42,7 +42,7 @@ const PostCard = ({ post }: { post: PostProp }): JSX.Element => {
               return (
                 <span
                   key={tag.id}
-                  className="p-2 text-xs text-gray-200 bg-gray-800 border rounded"
+                  className="p-1 px-2 mx-2 text-xs text-gray-200 bg-gray-800 border rounded"
                 >
                   {tag.name}
                 </span>
