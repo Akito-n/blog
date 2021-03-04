@@ -59,9 +59,11 @@ const Post = ({ postData }) => {
             />
           </div>
           <div className="p-5">
-            <div>{postData.title}</div>
-            <div>{postData.date}</div>
-            <div id="body">
+            <div className="text-2xl font-bold">{postData.title}</div>
+            <div className="font-mono text-gray-600 text-md">
+              {postData.date}
+            </div>
+            <div id="body" className="markdown">
               <span
                 dangerouslySetInnerHTML={{ __html: marked(postData.content) }}
               />
