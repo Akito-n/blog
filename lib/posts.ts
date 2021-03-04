@@ -45,6 +45,7 @@ const allPosts = async (): Promise<{ posts: [PostProp] }> => {
           }
           author{
             name
+            biography
             picture{
               id
               url
@@ -93,6 +94,7 @@ const getPostData = async (slug: string) => {
           date
           author {
             name
+            biography
             picture {
               id
               url

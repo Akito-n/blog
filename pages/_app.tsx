@@ -1,4 +1,5 @@
 import './styles.css'
+import 'styles/markdown.scss'
 const App = ({
   Component,
   pageProps

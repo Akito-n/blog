@@ -12,7 +12,11 @@ const PostCard = ({ post }: { post: PostProp }): JSX.Element => {
             <Link href={`/posts/${post.slug}`}>
               <a className={utilStyle.card}>
                 <Image
-                  src={post.coverImage.url ? post.coverImage.url : 'sample.png'}
+                  src={
+                    post.coverImage.url
+                      ? post.coverImage.url
+                      : '/images/noimage.png'
+                  }
                   width={post.coverImage.width}
                   height={post.coverImage.height}
                 />
@@ -38,7 +42,7 @@ const PostCard = ({ post }: { post: PostProp }): JSX.Element => {
               return (
                 <span
                   key={tag.id}
-                  className="p-2 text-xs text-gray-200 bg-gray-800 border rounded"
+                  className="p-1 px-2 mx-2 text-xs text-gray-200 bg-gray-800 border rounded"
                 >
                   {tag.name}
                 </span>

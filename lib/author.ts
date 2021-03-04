@@ -11,7 +11,7 @@ export type AuthorProp = {
   name: string
   picture: PictureProp
   job: string
-  biography?: string | null | undefined
+  biography: string
 }
 
 const author = async (): Promise<{ authors: [AuthorProp] }> => {
@@ -22,6 +22,7 @@ const author = async (): Promise<{ authors: [AuthorProp] }> => {
         authors(first: 1) {
           id
           name
+          biography
           picture{
             id
             url
