@@ -6,6 +6,7 @@ import highlight from 'highlight.js'
 import 'highlight.js/styles/railscasts.css'
 import Icon from 'components/icon'
 import Topic, { Toc } from 'components/Topic'
+import Link from 'next/link'
 
 export const getStaticProps = async ({ params }) => {
   const postData = await getPostData(params.slug)
@@ -86,8 +87,17 @@ const Post = ({ postData }) => {
           <nav className="sticky p-3 bg-white rounded-sm top-20 right-20">
             <div className="flex justify-around">
               <div className="grid items-end justify-items-stretch">
-                <Icon icon="twitter" size={25} />
-                <Icon icon="github" size={25} />
+                <Link href="https://twitter.com/naki415">
+                  <a className="text-blue-400" target="_blank">
+                    <Icon icon="twitter" size={25} />
+                  </a>
+                </Link>
+                <Link href="https://github.com/Akito-n">
+                  <a className="text-black" target="_blank">
+                    <Icon icon="github" size={25} />
+                  </a>
+                </Link>
+
                 <Icon icon="facebook2" size={25} />
               </div>
               <Image
