@@ -25,7 +25,7 @@ export const Home = ({
 }): JSX.Element => {
   return (
     <Layout>
-      <div>
+      <div className="mb-10 bg-gray-100">
         <main>
           <p className="text-lg font-bold text-center">なんかいい感じにやる</p>
           <div className="flex justify-center mx-auto">
