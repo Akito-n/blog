@@ -7,16 +7,13 @@ export type PostProp = {
   title: string
   slug: string
   excerpt: string
-  content: {
-    html: string
-    markdown: string
-    raw: string
-  }
   date: Date
+  content: string
   tags: [
     {
       id: string
       name: string
+      slug: string
     }
   ]
   coverImage: {
@@ -32,7 +29,7 @@ const allPosts = async (): Promise<{ posts: [PostProp] }> => {
   const graphcms = new GraphQLClient(GRAPH_CMS_API)
   const { posts } = await graphcms.request(
     `
-      { 
+      {
         posts{
           id
           title
@@ -42,6 +39,7 @@ const allPosts = async (): Promise<{ posts: [PostProp] }> => {
           tags{
             name
             id
+            slug
           }
           author{
             name
@@ -65,25 +63,33 @@ const allPosts = async (): Promise<{ posts: [PostProp] }> => {
   return posts
 }
 
-const getAllPostSlugs = async () => {
+const getAllPostSlugs = async (): Promise<
+  {
+    params: {
+      slug: string
+    }
+  }[]
+> => {
   const graphcms = new GraphQLClient(GRAPH_CMS_API)
-  const { posts } = await graphcms.request(
+  const { posts }: { posts: { slug: string }[] } = await graphcms.request(
     `
-      { 
+      {
         posts{
           slug
         }
       }
     `
   )
-  const postSlugs = posts.map(({ slug }) => ({
+  const postSlugs = posts.map(({ slug }: { slug: string }): {
+    params: { slug: string }
+  } => ({
     params: { slug }
   }))
 
   return postSlugs
 }
 
-const getPostData = async (slug: string) => {
+const getPostData = async (slug: string): Promise<any> => {
   const graphcms = new GraphQLClient(GRAPH_CMS_API)
   const { post } = await graphcms.request(
     `
@@ -110,6 +116,7 @@ const getPostData = async (slug: string) => {
           tags {
             id
             name
+            slug
           }
         }
       }
