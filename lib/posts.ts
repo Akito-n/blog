@@ -17,6 +17,7 @@ export type PostProp = {
     {
       id: string
       name: string
+      slug: string
     }
   ]
   coverImage: {
@@ -32,7 +33,7 @@ const allPosts = async (): Promise<{ posts: [PostProp] }> => {
   const graphcms = new GraphQLClient(GRAPH_CMS_API)
   const { posts } = await graphcms.request(
     `
-      { 
+      {
         posts{
           id
           title
@@ -42,6 +43,7 @@ const allPosts = async (): Promise<{ posts: [PostProp] }> => {
           tags{
             name
             id
+            slug
           }
           author{
             name
@@ -110,6 +112,7 @@ const getPostData = async (slug: string) => {
           tags {
             id
             name
+            slug
           }
         }
       }

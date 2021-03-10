@@ -60,6 +60,7 @@ const getTagData = async (slug: string): Promise<{ slug: string }> => {
           tags {
             id
             name
+            slug
           }
        }
      }
