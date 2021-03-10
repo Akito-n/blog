@@ -39,6 +39,8 @@ const getTagData = async (slug: string): Promise<{ slug: string }> => {
         posts{
           id
           title
+          date
+          excerpt
           slug
           coverImage {
             id
