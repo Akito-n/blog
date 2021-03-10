@@ -1,6 +1,6 @@
 import { Layout } from '../../components/Layout'
 import Image from 'next/image'
-import { getAllPostSlugs, getPostData } from '../../lib/posts'
+import { getAllPostSlugs, getPostData, PostProp } from '../../lib/posts'
 import marked from 'marked'
 import highlight from 'highlight.js'
 import 'highlight.js/styles/railscasts.css'
@@ -8,7 +8,15 @@ import Icon from 'components/icon'
 import Topic, { Toc } from 'components/Topic'
 import Link from 'next/link'
 
-export const getStaticProps = async ({ params }) => {
+export const getStaticProps = async function ({
+  params
+}: {
+  params: PostProp
+}): Promise<{
+  props: {
+    postData: PostProp
+  }
+}> {
   const postData = await getPostData(params.slug)
   return {
     props: {
@@ -17,7 +25,10 @@ export const getStaticProps = async ({ params }) => {
   }
 }
 
-export const getStaticPaths = async () => {
+export const getStaticPaths = async (): Promise<{
+  paths: any
+  fallback: boolean
+}> => {
   const paths = await getAllPostSlugs()
   return {
     paths,
@@ -26,7 +37,7 @@ export const getStaticPaths = async () => {
 }
 
 const toc: [Toc | undefined | null] = [null]
-const Post = ({ postData }) => {
+const Post = ({ postData }: { postData: PostProp }): JSX.Element => {
   const renderer = new marked.Renderer()
   renderer.heading = (text, level) => {
     const slug = encodeURI(text.toLowerCase())
