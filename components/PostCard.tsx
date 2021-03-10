@@ -43,7 +43,9 @@ const PostCard = ({ post }: { post: PostProp }): JSX.Element => {
                   key={tag.id}
                   className="p-1 px-2 mx-2 text-xs text-gray-200 bg-gray-800 border rounded"
                 >
-                  {tag.name}
+                  <Link href={`/tags/${tag.slug}`}>
+                    <a className="text-white no-underline">{tag.name}</a>
+                  </Link>
                 </span>
               )
             })}
