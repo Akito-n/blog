@@ -82,7 +82,9 @@ const Post = ({ postData }: { postData: PostProp }): JSX.Element => {
                     key={tag.id}
                     className="p-1 px-2 mx-2 text-xs text-gray-200 bg-gray-800 border rounded"
                   >
-                    {tag.name}
+                    <Link href={`/tags/${tag.slug}`}>
+                      <a className="text-white no-underline">{tag.name}</a>
+                    </Link>
                   </span>
                 )
               })}
@@ -124,7 +126,6 @@ const Post = ({ postData }: { postData: PostProp }): JSX.Element => {
               <p className="text-center">{postData.author.biography}</p>
             </div>
             <div className="">
-              <div></div>
               <ul className="list-none">
                 {toc.map((t, i) => (
                   <Topic toc={t} key={i} />
