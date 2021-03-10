@@ -35,10 +35,7 @@ const PostCard = ({ post }: { post: PostProp }): JSX.Element => {
             <p className="text-xs">{post.excerpt}</p>
           </div>
           <div>
-            {post.tags.map((tag, i) => {
-              if (i > 3) {
-                return <></>
-              }
+            {post.tags.map((tag) => {
               return (
                 <span
                   key={tag.id}
