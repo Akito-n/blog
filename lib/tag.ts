@@ -20,14 +20,14 @@ const getAllTagSlugs = async () => {
       }
     `
   )
-  const tagSlugs = tags.map(({ slug }) => ({
+  const tagSlugs = tags.map(({ slug }: { slug: string }) => ({
     params: { slug }
   }))
 
   return tagSlugs
 }
 
-const getTagData = async (): Promise<{ slug: string }> => {
+const getTagData = async (slug: string): Promise<{ slug: string }> => {
   const graphcms = new GraphQLClient(GRAPH_CMS_API)
   const { tag } = await graphcms.request(
     `
@@ -62,10 +62,11 @@ const getTagData = async (): Promise<{ slug: string }> => {
        }
      }
     }
-    `
+    `,
+    { slug }
   )
 
-  return tag
+  return { ...tag }
 }
 
 export { getAllTagSlugs, getTagData }
