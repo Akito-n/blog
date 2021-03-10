@@ -7,12 +7,8 @@ export type PostProp = {
   title: string
   slug: string
   excerpt: string
-  content: {
-    html: string
-    markdown: string
-    raw: string
-  }
   date: Date
+  content: string
   tags: [
     {
       id: string
@@ -67,25 +63,33 @@ const allPosts = async (): Promise<{ posts: [PostProp] }> => {
   return posts
 }
 
-const getAllPostSlugs = async () => {
+const getAllPostSlugs = async (): Promise<
+  {
+    params: {
+      slug: string
+    }
+  }[]
+> => {
   const graphcms = new GraphQLClient(GRAPH_CMS_API)
-  const { posts } = await graphcms.request(
+  const { posts }: { posts: { slug: string }[] } = await graphcms.request(
     `
-      { 
+      {
         posts{
           slug
         }
       }
     `
   )
-  const postSlugs = posts.map(({ slug }) => ({
+  const postSlugs = posts.map(({ slug }: { slug: string }): {
+    params: { slug: string }
+  } => ({
     params: { slug }
   }))
 
   return postSlugs
 }
 
-const getPostData = async (slug: string) => {
+const getPostData = async (slug: string): Promise<any> => {
   const graphcms = new GraphQLClient(GRAPH_CMS_API)
   const { post } = await graphcms.request(
     `
