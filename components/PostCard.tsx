@@ -25,11 +25,13 @@ const PostCard = ({ post }: { post: PostProp }): JSX.Element => {
           </div>
         </div>
         <div className="p-3 mt-10">
+          <div className="mb-3 text-sm">
+            <span className="block mr-1 text-gray-400">{post.date}</span>
+          </div>
           <div className="flex justify-between">
             <Link href={`/posts/${post.slug}`}>
               <a className="block no-underline">{post.title}</a>
             </Link>
-            <span className="block mr-1">{post.date}</span>
           </div>
           <div className="flex items-start justify-between mb-3">
             <p className="text-xs">{post.excerpt}</p>
