@@ -7,13 +7,13 @@ type Props = {
   image: string
   url: string
 }
-export default ({
+export default function BlogHead({
   title,
   description,
   keyword,
   image,
   url
-}: Props): JSX.Element => {
+}: Props): JSX.Element {
   return (
     <Head>
       <meta property="og:title" content={title} />
