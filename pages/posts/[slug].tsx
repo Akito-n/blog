@@ -5,8 +5,10 @@ import marked from 'marked'
 import highlight from 'highlight.js'
 import 'highlight.js/styles/railscasts.css'
 import Icon from 'components/icon'
+import { useRouter } from 'next/router'
 import Topic, { Toc } from 'components/Topic'
 import Link from 'next/link'
+import Head from 'components/Head'
 
 export const getStaticProps = async function ({
   params
@@ -38,6 +40,7 @@ export const getStaticPaths = async (): Promise<{
 
 const toc: [Toc | undefined | null] = [null]
 const Post = ({ postData }: { postData: PostProp }): JSX.Element => {
+  const router = useRouter()
   const renderer = new marked.Renderer()
   renderer.heading = (text, level) => {
     const slug = encodeURI(text.toLowerCase())
@@ -59,8 +62,23 @@ const Post = ({ postData }: { postData: PostProp }): JSX.Element => {
     }
   })
 
+  const props = {
+    title: postData.title,
+    description: postData.excerpt,
+    keyword: postData.title,
+    image: postData.coverImage.url,
+    url: router.asPath
+  }
+
   return (
     <Layout>
+      <Head
+        title={props.title}
+        description={props.description}
+        keyword={props.keyword}
+        image={props.image}
+        url={props.url}
+      />
       <div className="grid grid-cols-12 mx-auto">
         <div className="col-span-6 col-start-2 bg-white">
           <div className="max-w-full">
