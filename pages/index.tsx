@@ -27,7 +27,9 @@ export const Home = ({
     <Layout>
       <div className="mb-10 bg-gray-100">
         <main>
-          <p className="text-lg font-bold text-center">なんかいい感じにやる</p>
+          <p className="text-lg font-bold text-center">
+            かゆいところに手がとどかない
+          </p>
           <div className="flex justify-center mx-auto">
             {authors
               ? authors.map((author) => {
