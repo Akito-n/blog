@@ -9,6 +9,7 @@ import { useRouter } from 'next/router'
 import Topic, { Toc } from 'components/Topic'
 import Link from 'next/link'
 import Head from 'components/Head'
+import { useEffect } from 'react'
 
 export const getStaticProps = async function ({
   params
@@ -41,6 +42,12 @@ export const getStaticPaths = async (): Promise<{
 const toc: [Toc | undefined | null] = [null]
 const Post = ({ postData }: { postData: PostProp }): JSX.Element => {
   const router = useRouter()
+  useEffect(() => {
+    return () => {
+      toc.splice(0)
+    }
+  }, [])
+
   const renderer = new marked.Renderer()
   renderer.heading = (text, level) => {
     const slug = encodeURI(text.toLowerCase())
