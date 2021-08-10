@@ -1,4 +1,5 @@
 import PostCard from 'components/PostCard'
+import { sortDesc } from '../functions/sort'
 import Image from 'next/image'
 import { Layout } from '../components/Layout'
 import { author, AuthorProp } from '../lib/author'
@@ -49,7 +50,7 @@ export const Home = ({
         <div className="flex justify-center mx-auto">
           <div className="grid grid-cols-3 gap-4">
             {posts
-              ? posts.map((post) => {
+              ? sortDesc(posts).map((post) => {
                   return <PostCard key={post.id} post={post} />
                 })
               : 'loading'}
