@@ -1,7 +1,7 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document'
 import { Header } from '../components/Header'
 
-export const siteTitle = 'SaBoTen blog'
+export const siteTitle = 'Saboten blog'
 
 class MyDocument extends Document {
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
